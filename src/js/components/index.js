@@ -1,5 +1,9 @@
-import Vue from 'vue';
+import Vue from "vue";
 
-import Cropper from './Cropper';
-
-Vue.component('uc-cropper', Cropper);
+function importAll(r) {
+    r.keys().forEach(name => {
+        const component = 'uc' + (/\/([^\/]+).vue$/.exec(name)[1]).replace(/[A-Z]/g, (match) => '-' + match.toLowerCase());
+        Vue.component(component, r(name).default);
+    });
+}
+importAll(require.context('./', true, /\.vue$/));

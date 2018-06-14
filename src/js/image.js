@@ -17,23 +17,12 @@ new Vue({
     data() {
         return {
             images: imagesList,
-            image: imagesList[0],
-            aspectRatio: null
+            image: imagesList[0]
         }
     },
     methods: {
-        cropperReady(cropper) {
-            this.cropper = cropper;
-        },
-        cropEnd(cropper, event) {
-            console.log(cropper.getData());
-        }
-    },
-    watch: {
-        aspectRatio(newRatio) {
-            if (this.cropper) {
-                this.cropper.setAspectRatio(newRatio);
-            }
+        onSave(data) {
+            alert(JSON.stringify(data));
         }
     }
 });
